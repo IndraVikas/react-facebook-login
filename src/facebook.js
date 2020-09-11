@@ -79,7 +79,7 @@ class FacebookLogin extends React.Component {
     }
   }
   componentWillReceiveProps(nextProps) {
-    if (this.state.isSdkLoaded && nextProps.autoLoad && ! this.props.autoLoad) {
+    if (this.state.isSdkLoaded && nextProps.autoLoad && !this.props.autoLoad) {
       window.FB.getLoginStatus(this.checkLoginAfterRefresh);
     }
   }
@@ -102,6 +102,7 @@ class FacebookLogin extends React.Component {
         appId,
         xfbml,
         cookie,
+        status: true,
       });
       this.setStateIfMounted({ isSdkLoaded: true });
       if (autoLoad || this.isRedirectedFromFb()) {
@@ -114,7 +115,7 @@ class FacebookLogin extends React.Component {
     const params = window.location.search;
     return (
       decodeParamForKey(params, 'state') === 'facebookdirect' && (decodeParamForKey(params, 'code') ||
-      decodeParamForKey(params, 'granted_scopes'))
+        decodeParamForKey(params, 'granted_scopes'))
     );
   }
 
@@ -125,7 +126,7 @@ class FacebookLogin extends React.Component {
   loadSdkAsynchronously() {
     const { language } = this.props;
     ((d, s, id) => {
-      const element = d.getElementsByTagName(s)[0];
+      const element = d.getElementsByTagName(s)[ 0 ];
       const fjs = element;
       let js = element;
       if (d.getElementById(id)) { return; }
